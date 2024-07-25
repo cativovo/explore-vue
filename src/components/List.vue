@@ -34,16 +34,18 @@ function completeTodo(e: Event, id: string) {
 </script>
 
 <template>
-  <ul v-if="todos.size > 0">
-    <li v-for="todo in props.todos.values()" :key="todo.id">
+  <ul>
+    <li v-for="(todo, i) in props.todos.values()" :key="todo.id">
       <input
         type="checkbox"
         :checked="todo.done"
         @change="completeTodo($event, todo.id)"
+        :data-test="`checkbox-${i}`"
       />
-      {{ todo.content }}
-      <button @click="deleteTodo(todo.id)">delete</button>
+      <span>{{ todo.content }}</span>
+      <button @click="deleteTodo(todo.id)" :data-test="`delete-button-${i}`">
+        delete
+      </button>
     </li>
   </ul>
-  <p v-else>Empty</p>
 </template>
