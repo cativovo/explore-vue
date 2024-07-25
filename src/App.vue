@@ -90,5 +90,11 @@ watch(
     <input type="text" name="content" />
     <button type="submit">submit</button>
   </form>
-  <List :todos="todos" @delete="deleteTodo" @complete="completeTodo" />
+  <List
+    v-if="todos.size > 0"
+    :todos="todos"
+    @delete="deleteTodo"
+    @complete="completeTodo"
+  />
+  <p v-else>Empty</p>
 </template>
